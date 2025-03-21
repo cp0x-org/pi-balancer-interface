@@ -1,22 +1,35 @@
 'use client'
 
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { NavBar } from '@repo/lib/shared/components/navs/NavBar'
 import { NavLogo } from './NavLogo'
 import { MobileNav } from '@repo/lib/shared/components/navs/MobileNav'
 import { useNav } from '@repo/lib/shared/components/navs/useNav'
 import { BalancerLogoType } from '../imgs/BalancerLogoType'
-import { BuildNavLink } from './BuildNavLink'
-import { MobileBuildAccordion } from './MobileBuildAccordion'
-import { PROJECT_CONFIG, isBalancer } from '@repo/lib/config/getProjectConfig'
+// import { VeBalLink } from '@repo/lib/modules/vebal/VebalRedirectModal'
+// import { Box } from '@chakra-ui/react'
+// import { fadeIn } from '@repo/lib/shared/utils/animations'
+import { PROJECT_CONFIG } from '@repo/lib/config/getProjectConfig'
+import { isDev, isStaging } from '@repo/lib/config/app.config'
 
 export function NavBarContainer() {
-  const { defaultAppLinks } = useNav()
-
   const {
-    links: { appLinks, ecosystemLinks, socialLinks },
     options: { allowCreateWallet },
   } = PROJECT_CONFIG
+  const { defaultAppLinks } = useNav()
+
+  // TODO: move vebal link to config when live
+  const appLinks = []
+  if (isDev || isStaging) {
+    appLinks.push({
+      label: 'veBAL (wip)',
+      href: '/vebal',
+    })
+    appLinks.push({
+      label: 'LBP',
+      href: '/lbp/create',
+    })
+  }
 
   const allAppLinks = [...defaultAppLinks, ...appLinks]
 
@@ -30,16 +43,12 @@ export function NavBarContainer() {
         <NavBar
           allowCreateWallet={allowCreateWallet}
           appLinks={allAppLinks}
-          customLinks={isBalancer ? <BuildNavLink key="build-nav-link" /> : undefined}
           mobileNav={
             <MobileNav
-              appLinks={allAppLinks}
-              buildSection={
-                isBalancer ? onClose => <MobileBuildAccordion onClose={onClose} /> : undefined
-              }
-              ecosystemLinks={ecosystemLinks}
               LogoType={BalancerLogoType}
-              socialLinks={socialLinks}
+              appLinks={allAppLinks}
+              ecosystemLinks={[]}
+              socialLinks={[]}
             />
           }
           navLogo={<NavLogo />}
