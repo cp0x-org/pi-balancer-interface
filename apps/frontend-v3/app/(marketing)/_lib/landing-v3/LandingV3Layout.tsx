@@ -1,4 +1,4 @@
-import { Hero } from './Hero'
+// import { Hero } from './Hero'
 import { Code } from './Code'
 import { Videos } from './Videos'
 import { Audits } from './Audits'
@@ -6,13 +6,13 @@ import { Grants } from './Grants'
 import { Grow } from './Grow'
 import { Contracts } from './Contracts'
 import { Features } from './Features'
-import { FooterCta } from './FooterCta'
+// import { FooterCta } from './FooterCta'
 import { GetProtocolStatsQuery } from '@repo/lib/shared/services/api/generated/graphql'
 
 export function LandingV3Layout({ protocolData }: { protocolData: GetProtocolStatsQuery }) {
   return (
     <>
-      <Hero />
+      {/*<Hero />*/}
       <Code />
       <Contracts />
       <Features />
@@ -20,7 +20,7 @@ export function LandingV3Layout({ protocolData }: { protocolData: GetProtocolSta
       <Audits />
       <Videos />
       <Grants />
-      <FooterCta />
+      {/*<FooterCta />*/}
     </>
   )
 }

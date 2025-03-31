@@ -15,6 +15,7 @@ import { useSafeAppConnectionGuard } from './useSafeAppConnectionGuard'
 import { useWCConnectionLocalStorage } from './wallet-connect/useWCConnectionLocalStorage'
 
 async function isAuthorizedAddress(address: Address): Promise<boolean> {
+  // IMPORTANT FUNCTION
   try {
     const res = await fetch(`/api/wallet-check/${address}`, { cache: 'no-store' })
     const data = await res.json()

@@ -27,7 +27,7 @@ import { defaultAnvilForkRpcUrl } from '@repo/lib/test/utils/wagmi/fork.helpers'
   https://viem.sh/docs/clients/transports/fallback#fallback-transport
 */
 export const rpcFallbacks: Record<GqlChain, string | undefined> = {
-  [GqlChain.Mainnet]: 'https://eth.llamarpc.com',
+  [GqlChain.Mainnet]: 'https://mainnet.infura.io/v3/777b9112410c4a9f82f6f86f54b503b8',
   [GqlChain.Arbitrum]: 'https://arbitrum.llamarpc.com',
   [GqlChain.Base]: 'https://base.llamarpc.com',
   [GqlChain.Avalanche]: 'https://avalanche.drpc.org',
@@ -50,7 +50,7 @@ const getPrivateRpcUrl = (chain: GqlChain) => {
 }
 
 export const rpcOverrides: Record<GqlChain, string | undefined> = {
-  [GqlChain.Mainnet]: getPrivateRpcUrl(GqlChain.Mainnet),
+  [GqlChain.Mainnet]: 'https://mainnet.infura.io/v3/777b9112410c4a9f82f6f86f54b503b8',
   [GqlChain.Arbitrum]: getPrivateRpcUrl(GqlChain.Arbitrum),
   [GqlChain.Base]: getPrivateRpcUrl(GqlChain.Base),
   [GqlChain.Avalanche]: getPrivateRpcUrl(GqlChain.Avalanche),
