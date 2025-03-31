@@ -2,14 +2,14 @@
 
 import { Button, Divider, HStack, ModalFooter, VStack } from '@chakra-ui/react'
 import { useShouldRenderBatchTxButton } from '@repo/lib/modules/web3/safe.hooks'
-import { useAppzi } from '@repo/lib/shared/hooks/useAppzi'
+// import { useAppzi } from '@repo/lib/shared/hooks/useAppzi'
 import { AnimatePresence, motion } from 'framer-motion'
-import Link from 'next/link'
+// import Link from 'next/link'
 import { PropsWithChildren } from 'react'
-import { CornerDownLeft, MessageSquare, ThumbsUp } from 'react-feather'
+import { CornerDownLeft, } from 'react-feather'
 import { TransactionStep } from '../../../modules/transactions/transaction-steps/lib'
-import { PROJECT_CONFIG } from '@repo/lib/config/getProjectConfig'
-import { getDiscordLink } from '../../utils/links'
+// import { PROJECT_CONFIG } from '@repo/lib/config/getProjectConfig'
+// import { getDiscordLink } from '../../utils/links'
 
 export function SuccessActions({
   returnLabel,
@@ -18,10 +18,10 @@ export function SuccessActions({
   returnLabel?: string
   returnAction?: () => void
 }) {
-  const { openNpsModal } = useAppzi()
-  const {
-    options: { showVeBal },
-  } = PROJECT_CONFIG
+  // const { openNpsModal } = useAppzi()
+  // const {
+  //   options: { showVeBal },
+  // } = PROJECT_CONFIG
 
   return (
     <VStack w="full">
@@ -35,26 +35,26 @@ export function SuccessActions({
         >
           {returnLabel}
         </Button>
-        {showVeBal && (
-          <Button
-            leftIcon={<ThumbsUp size="14" />}
-            onClick={openNpsModal}
-            size="xs"
-            variant="ghost"
-          >
-            Give feedback
-          </Button>
-        )}
-        <Button
-          as={Link}
-          href={getDiscordLink()}
-          leftIcon={<MessageSquare size="14" />}
-          size="xs"
-          target="_blank"
-          variant="ghost"
-        >
-          Ask questions
-        </Button>
+        {/*{showVeBal && (*/}
+        {/*  <Button*/}
+        {/*    leftIcon={<ThumbsUp size="14" />}*/}
+        {/*    onClick={openNpsModal}*/}
+        {/*    size="xs"*/}
+        {/*    variant="ghost"*/}
+        {/*  >*/}
+        {/*    Give feedback*/}
+        {/*  </Button>*/}
+        {/*)}*/}
+        {/*<Button*/}
+        {/*  as={Link}*/}
+        {/*  href={getDiscordLink()}*/}
+        {/*  leftIcon={<MessageSquare size="14" />}*/}
+        {/*  size="xs"*/}
+        {/*  target="_blank"*/}
+        {/*  variant="ghost"*/}
+        {/*>*/}
+        {/*  Ask questions*/}
+        {/*</Button>*/}
       </HStack>
     </VStack>
   )
