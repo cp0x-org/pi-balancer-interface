@@ -6,11 +6,10 @@ import { staggeredFadeIn } from '@repo/lib/shared/utils/animations'
 import { motion } from 'framer-motion'
 import { DefaultPageContainer } from '../containers/DefaultPageContainer'
 import { ArrowUpRight } from 'react-feather'
-// import { AppLink } from '../navs/useNav'
+
 import { LinkSection } from './footer.types'
 import { ReactNode } from 'react'
 import { PROJECT_CONFIG } from '@repo/lib/config/getProjectConfig'
-// import { SocialIcon } from './SocialIcon'
 
 type CardContentProps = {
   linkSections: LinkSection[]
@@ -85,54 +84,6 @@ function CardContent({ linkSections, logoType, title, subTitle }: CardContentPro
   )
 }
 
-// function SocialLinks({ socialLinks }: { socialLinks: AppLink[] }) {
-//   return (
-//     <HStack spacing="ms" w={{ base: 'full', lg: 'auto' }}>
-//       {socialLinks.map(({ href, iconType }) => (
-//         <IconButton
-//           aria-label="Social icon"
-//           as={Link}
-//           bg="background.level2"
-//           h="44px"
-//           href={href}
-//           isExternal
-//           isRound
-//           key={href}
-//           rounded="full"
-//           variant="tertiary"
-//           w="44px"
-//         >
-//           <SocialIcon iconType={iconType} />
-//         </IconButton>
-//       ))}
-//     </HStack>
-//   )
-// }
-
-// function LegalLinks({ legalLinks }: { legalLinks: AppLink[] }) {
-//   return (
-//     <HStack
-//       justify={{ base: 'start', lg: 'end' }}
-//       p={{ base: 'sm', lg: '0' }}
-//       spacing={{ base: 'sm', lg: 'md' }}
-//       w="full"
-//       wrap="wrap"
-//     >
-//       {legalLinks.map(link => (
-//         <Link
-//           as={NextLink}
-//           color="font.secondary"
-//           fontSize={{ base: 'xs', md: 'sm' }}
-//           href={link.href}
-//           key={link.href}
-//         >
-//           {link.label}
-//         </Link>
-//       ))}
-//     </HStack>
-//   )
-// }
-
 type FooterProps = {
   logoType: ReactNode
   title: string
@@ -167,10 +118,7 @@ export function Footer({ logoType, title, subTitle }: FooterProps) {
             justify="space-between"
             variants={staggeredFadeIn}
             w="full"
-          >
-            {/*<SocialLinks socialLinks={socialLinks} />*/}
-            {/*<LegalLinks legalLinks={legalLinks} />*/}
-          </Stack>
+           />
         </VStack>
       </DefaultPageContainer>
     </Box>
