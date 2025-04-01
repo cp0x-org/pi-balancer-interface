@@ -1,4 +1,14 @@
-# Balancer frontend monorepo
+# Permissionless Uniswap Interface by cp0x
+
+An open-source, permissionless interface for the Balancer protocol, based on the [official Balancer repository](https://github.com/balancer/frontend-monorepo/), designed to be fully permissionless and enable direct, unrestricted interaction with smart contracts.
+
+## Application Links
+- Website: [pi.cp0x.com](https://pi.cp0x.com/)
+- Interface: [balancer.cp0x.com](https://balancer.cp0x.com)
+- Twitter: [@cp0xdotcom](https://x.com/cp0xdotcom)
+- Telegram: [@cp0xdotcom](https://t.me/cp0xdotcom)
+
+## Prerequisites
 
 _This project uses `pnpm`, if you haven't already installed it you can find the documentation here:
 https://pnpm.io/installation_
@@ -9,30 +19,30 @@ build orchestration, to learn more about Turborepo please see the
 
 ## What's inside?
 
-This monorepo includes the following apps & packages:
+This repo includes the following apps & packages:
 
 ### Apps
 
-- [apps/frontend-v3](https://github.com/balancer/frontend-monorepo/tree/main/apps/frontend-v3): The
-  official web app for the Balancer protocol, hosted at [https://balancer.fi](https://balancer.fi).
-- [apps/beets-frontend-v3](https://github.com/balancer/frontend-monorepo/tree/main/apps/beets-frontend-v3):
+- [apps/frontend-v3](https://github.com/cp0x-org/pi-balancer-interface/tree/main/apps/frontend-v3): The
+  official web app for the Balancer protocol, hosted at [https://balancer.cp0x.com](https://balancer.cp0x.com).
+- [apps/beets-frontend-v3](https://github.com/cp0x-org/pi-balancer-interface/tree/main/apps/beets-frontend-v3):
   The (still in development) web app for the Beets protocol.
 
 ### Packages
 
-- [packages/lib](https://github.com/balancer/frontend-monorepo/tree/main/packages/lib): Shared logic
+- [packages/lib](https://github.com/cp0x-org/pi-balancer-interface/tree/main/packages/lib): Shared logic
   for all frontend-v3 apps.
-- [packages/eslint-config](https://github.com/balancer/frontend-monorepo/tree/main/packages/eslint-config):
+- [packages/eslint-config](https://github.com/cp0x-org/pi-balancer-interface/tree/main/packages/eslint-config):
   eslint configurations.
-- [packages/typescript-config](https://github.com/balancer/frontend-monorepo/tree/main/packages/typescript-config):
+- [packages/typescript-config](https://github.com/cp0x-org/pi-balancer-interface/tree/main/packages/typescript-config):
   Typescript config's used throughout the monorepo.
 
 ## Getting started
 
 Click on the links below to see the README for each app:
 
-- [frontend-v3](https://github.com/balancer/frontend-monorepo/tree/main/apps/frontend-v3/README.md)
-- [beets-frontend-v3](https://github.com/balancer/frontend-monorepo/tree/main/apps/beets-frontend-v3/README.md)
+- [frontend-v3](https://github.com/cp0x-org/pi-balancer-interface/tree/main/apps/frontend-v3/README.md)
+- [beets-frontend-v3](https://github.com/cp0x-org/pi-balancer-interface/tree/main/apps/beets-frontend-v3/README.md)
 
 ### Build
 

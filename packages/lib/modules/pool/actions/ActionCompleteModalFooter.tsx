@@ -1,5 +1,5 @@
 import { Button, Divider, HStack, VStack } from '@chakra-ui/react'
-import { CornerDownLeft, MessageSquare, ThumbsUp } from 'react-feather'
+import { CornerDownLeft } from 'react-feather'
 
 export function ActionCompleteModalFooter() {
   return (
@@ -9,12 +9,6 @@ export function ActionCompleteModalFooter() {
         <Button leftIcon={<CornerDownLeft size="14" />} size="xs" variant="ghost">
           Return to pool
         </Button>
-        {/*<Button leftIcon={<ThumbsUp size="14" />} size="xs" variant="ghost">*/}
-        {/*  Give feedback*/}
-        {/*</Button>*/}
-        {/*<Button leftIcon={<MessageSquare size="14" />} size="xs" variant="ghost">*/}
-        {/*  Ask questions*/}
-        {/*</Button>*/}
       </HStack>
     </VStack>
   )
