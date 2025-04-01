@@ -4,7 +4,7 @@ import { Button, Divider, HStack, ModalFooter, VStack } from '@chakra-ui/react'
 import { useStepWithTxBatch } from '@repo/lib/modules/web3/safe.hooks'
 import { AnimatePresence, motion } from 'motion/react'
 import { PropsWithChildren } from 'react'
-import { CornerDownLeft, } from 'react-feather'
+import { CornerDownLeft } from 'react-feather'
 import { TransactionStep } from '../../../modules/transactions/transaction-steps/lib'
 
 export function SuccessActions({

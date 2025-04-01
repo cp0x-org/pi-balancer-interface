@@ -7,8 +7,6 @@ import { ReactQueryClientProvider } from '@repo/lib/shared/app/react-query.provi
 import { useTheme } from '@chakra-ui/react'
 import { merge } from 'lodash'
 import { UserSettingsProvider } from '../user/settings/UserSettingsProvider'
-// import { AcceptPoliciesModal } from './AcceptPoliciesModal'
-// import { BlockedAddressModal } from './BlockedAddressModal'
 import { CustomAvatar } from './CustomAvatar'
 import { UserAccountProvider } from './UserAccountProvider'
 import { PropsWithChildren } from 'react'
@@ -99,8 +97,6 @@ export function Web3Provider({ children }: PropsWithChildren) {
               initSlippage={undefined}
             >
               {children}
-              {/*<BlockedAddressModal />*/}
-              {/*<AcceptPoliciesModal />*/}
             </UserSettingsProvider>
           </UserAccountProvider>
         </RainbowKitProvider>
