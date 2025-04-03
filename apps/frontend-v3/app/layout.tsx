@@ -51,8 +51,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
             {children}
             <Footer
               logoType={<BalancerLogoType />}
-              subTitle="Balancer is a battle-tested toolkit for true AMM experimentation and innovation."
-              title="AMMs made easy"
+              subTitle=""
+              piTitle="Permissionless Balancer Interface by cp0x"
+              title=""
             />
             <SpeedInsights />
             <Script async src="https://w.appzi.io/w.js?token=8TY8k" />

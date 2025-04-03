@@ -7,7 +7,6 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
-    // Используем replace, чтобы не сохранять страницу в истории браузера
     router.replace('/swap')
   }, [router])
 
