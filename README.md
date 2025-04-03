@@ -44,6 +44,20 @@ Click on the links below to see the README for each app:
 - [frontend-v3](https://github.com/cp0x-org/pi-balancer-interface/tree/main/apps/frontend-v3/README.md)
 - [beets-frontend-v3](https://github.com/cp0x-org/pi-balancer-interface/tree/main/apps/beets-frontend-v3/README.md)
 
+### Prepare
+
+In folders `apps/frontend-v3` and `packages/lib` copy data from file `.env.template` to file `.env.local`.
+
+Run command to install all dependencies:
+```
+pnpm install
+```
+
+Run command to generate graphQL schemas:
+```
+pnpm graphql:gen
+```
+
 ### Build
 
 To build all apps and packages, run the following command:
