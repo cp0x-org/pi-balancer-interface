@@ -1,7 +1,8 @@
 'use client'
 
 import { Button, Divider, HStack, ModalFooter, VStack } from '@chakra-ui/react'
-import { useShouldRenderBatchTxButton } from '@repo/lib/modules/web3/safe.hooks'
+import { useStepWithTxBatch } from '@repo/lib/modules/web3/safe.hooks'
+import { useAppzi } from '@repo/lib/shared/hooks/useAppzi'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { PropsWithChildren } from 'react'
@@ -89,9 +90,9 @@ export function ActionModalFooter({
 }
 
 function RenderActionButton({ currentStep }: PropsWithChildren<{ currentStep: TransactionStep }>) {
-  const shouldRenderBatchButton = useShouldRenderBatchTxButton(currentStep)
+  const { isStepWithTxBatch } = useStepWithTxBatch(currentStep)
 
-  if (shouldRenderBatchButton) return currentStep?.renderBatchAction?.(currentStep)
+  if (isStepWithTxBatch) return currentStep?.renderBatchAction?.(currentStep)
 
   return currentStep?.renderAction()
 }
