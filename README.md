@@ -1,4 +1,4 @@
-# Permissionless Uniswap Interface by cp0x
+# Permissionless Balancer Interface by cp0x
 
 An open-source, permissionless interface for the Balancer protocol, based on the [official Balancer repository](https://github.com/balancer/frontend-monorepo/), designed to be fully permissionless and enable direct, unrestricted interaction with smart contracts.
 
