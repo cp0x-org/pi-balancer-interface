@@ -67,23 +67,19 @@ export const ProjectConfigBalancer: ProjectConfig = {
     socialLinks: [
       {
         iconType: 'x',
-        href: 'https://x.com/Balancer',
-      },
-      {
-        iconType: 'discord',
-        href: 'https://discord.balancer.fi/',
-      },
-      {
-        iconType: 'medium',
-        href: 'https://medium.com/balancer-protocol',
+        href: 'https://x.com/cp0xdotcom',
       },
       {
         iconType: 'youtube',
-        href: 'https://www.youtube.com/channel/UCBRHug6Hu3nmbxwVMt8x_Ow',
+        href: 'https://www.youtube.com/@cp0xcrypto/',
       },
       {
         iconType: 'github',
-        href: 'https://github.com/balancer/',
+        href: 'https://github.com/cp0x-org/pi-balancer-interface/',
+      },
+      {
+        iconType: 'telegram',
+        href: 'https://t.me/cp0xdotcom',
       },
     ],
     legalLinks: [

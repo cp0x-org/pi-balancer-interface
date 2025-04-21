@@ -1,15 +1,16 @@
 'use client'
 
 import NextLink from 'next/link'
-import { Stack, Divider, Text, Box, VStack, HStack, Link } from '@chakra-ui/react'
+import { Stack, Divider, Text, Box, VStack, HStack, Link, IconButton } from '@chakra-ui/react'
 import { staggeredFadeIn } from '@repo/lib/shared/utils/animations'
 import { motion } from 'framer-motion'
 import { DefaultPageContainer } from '../containers/DefaultPageContainer'
 import { ArrowUpRight } from 'react-feather'
-
+import { AppLink } from '../navs/useNav'
 import { LinkSection } from './footer.types'
 import { ReactNode } from 'react'
 import { PROJECT_CONFIG } from '@repo/lib/config/getProjectConfig'
+import { SocialIcon } from './SocialIcon'
 
 type CardContentProps = {
   linkSections: LinkSection[]
@@ -56,7 +57,7 @@ type FooterProps = {
 export function Footer({logoType, title, subTitle, piTitle}: FooterProps) {
     const {
         footer: {linkSections},
-        // links: { socialLinks, legalLinks },
+        links: { socialLinks },
     } = PROJECT_CONFIG
 
     return (
@@ -71,6 +72,7 @@ export function Footer({logoType, title, subTitle, piTitle}: FooterProps) {
                         title={title}
                     />
                     <Divider/>
+
                     <Stack
                         align="start"
                         alignItems={{base: 'none', lg: 'center'}}
@@ -82,9 +84,34 @@ export function Footer({logoType, title, subTitle, piTitle}: FooterProps) {
                         justify="space-between"
                         variants={staggeredFadeIn}
                         w="full"
-                    />
+                    >
+                        <SocialLinks socialLinks={socialLinks} />
+                    </Stack>
                 </VStack>
             </DefaultPageContainer>
         </Box>
     )
+}
+function SocialLinks({ socialLinks }: { socialLinks: AppLink[] }) {
+  return (
+    <HStack spacing="ms" w={{ base: 'full', lg: 'auto' }}>
+      {socialLinks.map(({ href, iconType }) => (
+        <IconButton
+          aria-label="Social icon"
+          as={Link}
+          bg="background.level2"
+          h="44px"
+          href={href}
+          isExternal
+          isRound
+          key={href}
+          rounded="full"
+          variant="tertiary"
+          w="44px"
+        >
+          <SocialIcon iconType={iconType} />
+        </IconButton>
+      ))}
+    </HStack>
+  )
 }

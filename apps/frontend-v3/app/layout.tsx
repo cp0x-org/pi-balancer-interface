@@ -13,6 +13,8 @@ import { ThemeProvider as ColorThemeProvider } from 'next-themes'
 import { ThemeProvider } from '@/lib/services/chakra/ThemeProvider'
 import { BalancerLogoType } from '@/lib/components/imgs/BalancerLogoType'
 import { Footer } from '@repo/lib/shared/components/navs/Footer'
+import { Button } from "@chakra-ui/react";
+import { ArrowUpRight } from "react-feather";
 
 export const metadata: Metadata = {
   title: 'Balancer - DeFi Liquidity Pools',

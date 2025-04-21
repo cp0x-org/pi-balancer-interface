@@ -2,10 +2,11 @@
 export function MediumIcon({ size = 24 }: { size?: number }) {
   return (
     <svg
+
+      viewBox="0 0 640 512"
       fill="currentColor"
       height={size}
       stroke="currentColor"
-      viewBox="0 0 640 512"
       width={size}
       xmlns="http://www.w3.org/2000/svg"
     >
