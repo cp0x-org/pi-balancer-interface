@@ -2,7 +2,6 @@
 
 import {
   GqlChain,
-  GqlPoolType,
   GqlPoolOrderBy,
   GqlPoolOrderDirection,
 } from '@repo/lib/shared/services/api/generated/graphql'
@@ -39,25 +38,6 @@ export const PROTOCOL_VERSION_TABS: ButtonGroupOption[] = [
     label: 'CoW',
   },
 ] as const
-
-export function poolTypeLabel(poolType: GqlPoolType) {
-  switch (poolType) {
-    case GqlPoolType.Weighted:
-      return 'Weighted'
-    case GqlPoolType.Stable:
-      return 'Stable'
-    case GqlPoolType.LiquidityBootstrapping:
-      return 'Liquidity Bootstrapping (LBP)'
-    case GqlPoolType.Gyro:
-      return 'Gyro CLP'
-    case GqlPoolType.CowAmm:
-      return 'CoW AMM'
-    case GqlPoolType.Fx:
-      return 'FX'
-    default:
-      return poolType.toLowerCase()
-  }
-}
 
 export function usePoolListQueryState() {
   const [first, setFirst] = useQueryState('first', poolListQueryStateParsers.first)
@@ -158,8 +138,12 @@ export function usePoolListQueryState() {
   }
 
   function setPagination(pagination: PaginationState) {
-    setFirst(pagination.pageSize)
-    setSkip(pagination.pageIndex * pagination.pageSize)
+    setFirst(pagination.pageSize === 20 ? null : pagination.pageSize)
+    setSkip(
+      pagination.pageIndex * pagination.pageSize === 0
+        ? null
+        : pagination.pageIndex * pagination.pageSize
+    )
   }
 
   function setSearch(text: string) {
@@ -275,7 +259,6 @@ export function usePoolListQueryState() {
     togglePoolType,
     togglePoolTag,
     togglePoolHookTag,
-    poolTypeLabel,
     setSorting,
     setPagination,
     setSearch,

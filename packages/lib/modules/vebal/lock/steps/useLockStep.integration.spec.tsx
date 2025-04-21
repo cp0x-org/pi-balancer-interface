@@ -6,17 +6,28 @@ import {
   useManagedTransaction,
 } from '@repo/lib/modules/web3/contracts/useManagedTransaction'
 import { defaultTestUserAccount } from '@repo/lib/test/anvil/anvil-setup'
-import { approveToken, resetBlock, setUserTokenBalance } from '@repo/lib/test/integration/sdk-utils'
+import { approveToken, resetBlock, setVeBalBptBalance } from '@repo/lib/test/integration/sdk-utils'
 import { testHook, waitForSimulationSuccess } from '@repo/lib/test/utils/custom-renderers'
 import { connectAndImpersonate } from '@repo/lib/test/utils/wagmi/wagmi-connections'
 import { mainnetTestPublicClient } from '@repo/lib/test/utils/wagmi/wagmi-test-clients'
 import { Address, parseUnits } from 'viem'
 import { LockActionType } from './lock-steps.utils'
 import { useLockStep } from './useLockStep'
+import { getMaxLockEndDate } from '../lock-time.utils'
+import { PropsWithChildren } from 'react'
+import { TokenBalancesProvider } from '@repo/lib/modules/tokens/TokenBalancesProvider'
 
 const lockAmount: bigint = parseUnits('3000', 18)
 const veBalContractAddress = mainnetNetworkConfig.contracts.veBAL as Address
 const veBalBpt = mainnetNetworkConfig.tokens.addresses.veBalBpt as Address
+
+function Providers({ children }: PropsWithChildren) {
+  return (
+    <TransactionStateProvider>
+      <TokenBalancesProvider initTokens={[]}>{children}</TokenBalancesProvider>
+    </TransactionStateProvider>
+  )
+}
 
 function testUseLockStep() {
   const { result } = testHook(
@@ -24,13 +35,12 @@ function testUseLockStep() {
       const { _txInput } = useLockStep({
         lockActionType: LockActionType.CreateLock,
         lockAmount,
-        // TODO: calculate date from block timestamp (via new utils function)
-        lockEndDate: '2026-03-01',
+        lockEndDate: getMaxLockEndDate(new Date()).toString(),
       })
 
       return useManagedTransaction(_txInput as ManagedTransactionInput)
     },
-    { wrapper: TransactionStateProvider }
+    { wrapper: Providers }
   )
 
   return result
@@ -46,12 +56,9 @@ test('Lock big veBal amount', async () => {
 
   await connectAndImpersonate(veBalHolder, ChainId.MAINNET)
 
-  await setUserTokenBalance({
-    client: mainnetTestPublicClient,
+  await setVeBalBptBalance({
     account: veBalHolder,
-    tokenAddress: veBalBpt,
     balance: lockAmount,
-    slot: 0,
   })
 
   await approveToken({

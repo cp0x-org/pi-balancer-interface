@@ -155,6 +155,7 @@ function BaseAprTooltip({
   const popoverContent = customPopoverContent || (
     <PopoverContent
       minWidth={['100px', '300px']}
+      motionProps={{ animate: { scale: 1, opacity: 1 } }}
       overflow="hidden"
       p="0"
       shadow="3xl"
@@ -407,7 +408,7 @@ function BaseAprTooltip({
   )
 
   return (
-    <Popover placement={placement} trigger="hover">
+    <Popover isLazy placement={placement} trigger="hover">
       {({ isOpen }) => (
         <>
           <PopoverTrigger>

@@ -18,7 +18,9 @@ import {
 import { Address, Hex } from 'viem'
 import { ApiToken } from '../tokens/token.types'
 
-export type Pool = GetPoolQuery['pool']
+// TODO: Remove Exclude when GqlPoolReClamm type is fixed in the API schema
+export type PoolWithReclamm = GetPoolQuery['pool']
+export type Pool = Exclude<PoolWithReclamm, { __typename: 'GqlPoolReClamm' }>
 
 export type PoolId = Hex
 
@@ -102,6 +104,7 @@ export const poolTypeFilters = [
   GqlPoolType.Gyro,
   GqlPoolType.CowAmm,
   GqlPoolType.Fx,
+  GqlPoolType.QuantAmmWeighted,
 ] as const
 
 export type PoolFilterType = (typeof poolTypeFilters)[number]
@@ -114,6 +117,7 @@ export const POOL_TYPE_MAP: { [key in PoolFilterType]: GqlPoolType[] } = {
   [GqlPoolType.Gyro]: [GqlPoolType.Gyro, GqlPoolType.Gyro3, GqlPoolType.Gyroe],
   [GqlPoolType.CowAmm]: [GqlPoolType.CowAmm],
   [GqlPoolType.Fx]: [GqlPoolType.Fx],
+  [GqlPoolType.QuantAmmWeighted]: [GqlPoolType.QuantAmmWeighted],
 }
 
 export const poolTagFilters = ['INCENTIVIZED', 'VE8020', 'POINTS', 'BOOSTED', 'RWA'] as const

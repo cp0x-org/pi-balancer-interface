@@ -37,11 +37,12 @@ import { useEffect, useState } from 'react'
 import { useVebalLockData } from '@repo/lib/modules/vebal/lock/VebalLockDataProvider'
 import { useUserAccount } from '@repo/lib/modules/web3/UserAccountProvider'
 import { TokenRowWithDetails } from '@repo/lib/modules/tokens/TokenRow/TokenRowWithDetails'
-import { fNum } from '@repo/lib/shared/utils/numbers'
+import { bn, fNum } from '@repo/lib/shared/utils/numbers'
+import { useVeBalRedirectPath } from '../../vebal-navigation'
 
 type Props = {
   isOpen: boolean
-  onClose(isSuccess: boolean): void
+  onClose(isSuccess: boolean, redirectPath: string): void
   extendExpired: boolean
 }
 
@@ -52,12 +53,14 @@ export function VebalLockModal({
   ...rest
 }: Props & Omit<ModalProps, 'children' | 'onClose'>) {
   const router = useRouter()
+  const { redirectPath, returnLabel } = useVeBalRedirectPath()
 
   const { userAddress, isLoading: userAccountIsLoading } = useUserAccount()
   const { isDesktop, isMobile } = useBreakpoints()
   const {
     vebalBptToken,
     totalAmount,
+    lpToken,
     lockDuration,
     lockMode,
     isIncreasedLockAmount,
@@ -70,19 +73,24 @@ export function VebalLockModal({
   const [buildLockStepsArgs, setBuildLockStepsArgs] = useState<UseBuildLockStepsArgs>(() => ({
     extendExpired,
     totalAmount,
-    lockDuration: lockDuration,
-    isIncreasedLockAmount: isIncreasedLockAmount,
-    mainnetLockedInfo: mainnetLockedInfo,
+    lockDuration,
+    isIncreasedLockAmount,
+    mainnetLockedInfo,
   }))
 
+  /*
+    When lptoken: we are creating/increasing the lock amount
+    When no lptoken: we are unlocking/locking
+   */
+  const addedAmount = lpToken ? bn(lpToken) : totalAmount
   // "freeze" useBuildLockSteps args on modal open/close (update value only on userAddress change)
   useEffect(() => {
     setBuildLockStepsArgs({
       extendExpired,
-      totalAmount,
-      lockDuration: lockDuration,
-      isIncreasedLockAmount: isIncreasedLockAmount,
-      mainnetLockedInfo: mainnetLockedInfo,
+      totalAmount: addedAmount,
+      lockDuration,
+      isIncreasedLockAmount,
+      mainnetLockedInfo,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, userAddress])
@@ -102,7 +110,7 @@ export function VebalLockModal({
       isCentered
       isOpen={isOpen}
       onClose={() => {
-        onClose(!!lockTxHash)
+        onClose(!!lockTxHash, redirectPath)
       }}
       preserveScrollBarGap
       trapFocus={!isSuccess}
@@ -198,10 +206,10 @@ export function VebalLockModal({
           currentStep={transactionSteps.currentStep}
           isSuccess={isSuccess}
           returnAction={() => {
-            onClose(isSuccess)
-            router.push('/vebal/manage')
+            onClose(isSuccess, redirectPath)
+            router.push(redirectPath)
           }}
-          returnLabel="Return to veBAL manage"
+          returnLabel={returnLabel}
         />
       </ModalContent>
     </Modal>
