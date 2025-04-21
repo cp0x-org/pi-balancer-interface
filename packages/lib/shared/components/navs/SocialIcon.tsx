@@ -5,7 +5,7 @@ import { GithubIcon } from '../icons/social/GithubIcon'
 import { YoutubeIcon } from '../icons/social/YoutubeIcon'
 import { TelegramIcon } from "@repo/lib/shared/components/icons/social/TelegramIcon";
 
-export type IconType = 'x' | 'discord' | 'medium' | 'github' | 'youtube'
+export type IconType = 'x' | 'discord' | 'medium' | 'github' | 'youtube' | 'telegram'
 
 export function SocialIcon({
   iconType,
