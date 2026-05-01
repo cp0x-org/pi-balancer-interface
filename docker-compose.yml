@@ -1,0 +1,11 @@
+services:
+  pi-balancer:
+    image: cp0x/pi-balancer-interface:0.1.6
+    container_name: pi-balancer-interface
+    restart: always
+    environment:
+      - NEXT_PRIVATE_DRPC_KEY=
+      - NEXT_PRIVATE_ALLOWED_ORIGINS=https://balancer.cp0x.com/
+    ports:
+      - '3001:3000'
+    tty: true

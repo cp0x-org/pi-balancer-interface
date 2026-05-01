@@ -3,10 +3,10 @@
 import { fadeIn } from '@repo/lib/shared/utils/animations'
 import { BalancerLogo } from '../imgs/BalancerLogo'
 import { BalancerLogoType } from '../imgs/BalancerLogoType'
+import { Cp0xLogo } from '../imgs/Cp0xLogo'
 import { Box, Link } from '@chakra-ui/react'
 import { motion } from 'motion/react'
 import NextLink from 'next/link'
-import { Cp0xLogo } from '@/lib/components/imgs/Cp0xLogo'
 
 export function NavLogo() {
   return (

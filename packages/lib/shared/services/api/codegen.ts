@@ -1,4 +1,12 @@
 import { CodegenConfig } from '@graphql-codegen/cli'
+import { config as dotenvConfig } from 'dotenv'
+import { existsSync } from 'node:fs'
+
+for (const path of ['./.env.local', '../../.env.local', './.env.template']) {
+  if (existsSync(path)) {
+    dotenvConfig({ path })
+  }
+}
 
 const config: CodegenConfig = {
   schema: {

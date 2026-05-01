@@ -102,7 +102,7 @@ export function ClaimNetworkPools() {
   const hasProtocolRewards = protocolRewardsBalance && protocolRewardsBalance.isGreaterThan(0)
   const hasHiddenHandRewards = hiddenHandRewardsData && hiddenHandRewardsData.totalValueUsd > 0
 
-  const chainIds = PROJECT_CONFIG.merklRewardsChains.map(chain => getChainId(chain))
+  const chainIds = (PROJECT_CONFIG.merklRewardsChains ?? []).map(chain => getChainId(chain))
   const { hasMerklRewards } = useHasMerklRewards(poolsWithOnchainUserBalances, chainIds)
 
   const { isDesktop } = useBreakpoints()

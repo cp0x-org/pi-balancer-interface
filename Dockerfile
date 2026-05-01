@@ -1,34 +1,29 @@
-# Этап сборки
-FROM node:20-alpine AS builder
+# ---------- BUILDER ----------
+FROM node:24-alpine AS builder
 
 WORKDIR /app
+RUN npm install -g pnpm
 
-# Устанавливаем pnpm
-RUN npm install -g pnpm@9.8.0
-
-# Копируем только необходимые файлы для установки зависимостей
 COPY . .
 
-# Устанавливаем зависимости (будет использован кэш слоёв, если файлы не изменились)
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
+RUN pnpm run build
 
-# Выполняем сборку проекта
-RUN pnpm --filter frontend-v3 run build
 
-# Финальный production-образ
-FROM node:20-alpine
+# ---------- RUNNER ----------
+FROM node:24-alpine
 
 WORKDIR /app
+RUN npm install -g pnpm
 
-# Устанавливаем pnpm
-RUN npm install -g pnpm@9.8.0
+ENV NODE_ENV=production
 
-# Копируем только необходимые файлы из сборки
-COPY --from=builder /app ./
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/pnpm-lock.yaml ./
+COPY --from=builder /app/pnpm-workspace.yaml ./
 
-# Удаляем dev-зависимости
-RUN pnpm prune --production
+COPY --from=builder /app/apps ./apps
 
-EXPOSE 3000
+RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 
 CMD ["pnpm", "--filter", "frontend-v3", "start"]

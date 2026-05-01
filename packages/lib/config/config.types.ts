@@ -153,7 +153,9 @@ type OptionsConfig = {
   hidePoolTypes: GqlPoolType[]
   hideProtocolVersion: string[]
   showPoolName: boolean
+  showVeBal?: boolean
   showMaBeets: boolean
+  showPoolHooksFilter?: boolean
   allowCreateWallet: boolean
   isOnSafeAppList: boolean
 }
@@ -208,12 +210,15 @@ export interface ProjectConfig {
   defaultNetwork: GqlChain
   ensNetwork: GqlChain
   delegateOwner: Address
+  externalLinks?: {
+    poolComposerUrl?: string
+  }
   options: OptionsConfig
   links: Links
   footer: { linkSections: LinkSection[] }
   cowSupportedNetworks: GqlChain[]
   networksForProtocolStats?: GqlChain[]
   partnerCards?: PartnerCard[]
-  merklRewardsChains: GqlChain[]
+  merklRewardsChains?: GqlChain[]
   promoItems?: PromoItem[]
 }

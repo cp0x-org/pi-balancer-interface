@@ -9,14 +9,14 @@ import { Features } from './Features'
 // import { FooterCta } from './FooterCta'
 import { GetProtocolStatsQuery } from '@repo/lib/shared/services/api/generated/graphql'
 
-export function LandingV3Layout({ protocolData }: { protocolData: GetProtocolStatsQuery }) {
+export function LandingV3Layout({ protocolData: _protocolData }: { protocolData: GetProtocolStatsQuery }) {
   return (
     <>
       {/*<Hero />*/}
       <Code />
       <Contracts />
       <Features />
-      <Grow protocolData={protocolData} />
+      <Grow />
       <Audits />
       <Videos />
       <Grants />
